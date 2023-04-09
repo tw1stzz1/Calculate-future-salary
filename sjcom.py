@@ -5,7 +5,12 @@ from itertools import count
 from collections import defaultdict
 
 
-def get_vacancies(api_key_sj, language="Python", page=0, period=30, city_id=4, catalogues=48 ):
+def get_vacancies(api_key_sj, 
+                  language="Python", 
+                  page=0, 
+                  period=30, 
+                  city_id=4, 
+                  catalogues=48):
     url = "https://api.superjob.ru/2.0/vacancies/"
     params = {
         "town" : city_id,

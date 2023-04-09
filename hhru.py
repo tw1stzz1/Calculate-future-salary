@@ -3,14 +3,19 @@ from itertools import count
 from collections import defaultdict
 
 
-def get_vacancies(page, language="Python"):
+def get_vacancies(language="Python",
+                  page=0,
+                  professional_role=96,
+                  city_id="1",
+                  period=30)
+                  
     url = "https://api.hh.ru/vacancies"
     params = {
         "page" : page,
-        "professional_role" : 96,
+        "professional_role" : professional_role,
         "text" : language,
-        "area" : "1",
-        "period" : 30
+        "area" : city_id,
+        "period" : period
         
     }
     response = requests.get(url, params=params)
