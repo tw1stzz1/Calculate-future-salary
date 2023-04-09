@@ -44,9 +44,9 @@ def main():
         "PHP",
         "Ruby"
     ]
-    #title = "HeadHunter"
-    #languages_statistics_hhru = get_languages_statistics_hhru(languages)
-    #print(create_table(languages_statistics_hhru))
+    title = "HeadHunter"
+    languages_statistics_hhru = get_languages_statistics_hhru(languages)
+    print(create_table(languages_statistics_hhru))
     title = "SuperJob"
     languages_statistics_sj = get_languages_statistics_sj(api_key_sj, languages)
     print(create_table(languages_statistics_sj, title))
