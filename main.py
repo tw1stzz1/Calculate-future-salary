@@ -1,11 +1,12 @@
 import os
 from terminaltables import AsciiTable, DoubleTable, SingleTable
+from dotenv import load_dotenv
 
 from hhru import get_languages_statistics_hhru
 from sjcom import get_languages_statistics_sj
 
 
-def create_table(languages_statistics):   
+def create_table(languages_statistics, title):   
     title_table = [
         [
             'Языки программирования',
@@ -25,13 +26,14 @@ def create_table(languages_statistics):
           ]
     
         )
-    table_instance = AsciiTable(title_table)
+    table_instance = AsciiTable(title_table, title)
     return table_instance.table
 
 
 
 def main():
-    api_key_sj = os.environ['API_KEY_SJ']
+    load_dotenv()
+    api_key_sj = os.getenv('API_KEY_SJ')
     languages = [
         "Python",
         "JavaScript",
@@ -42,11 +44,12 @@ def main():
         "PHP",
         "Ruby"
     ]
-    languages_statistics_hhru = get_languages_statistics_hhru(languages)
-    print(create_table(languages_statistics_hhru))
-
+    #title = "HeadHunter"
+    #languages_statistics_hhru = get_languages_statistics_hhru(languages)
+    #print(create_table(languages_statistics_hhru))
+    title = "SuperJob"
     languages_statistics_sj = get_languages_statistics_sj(api_key_sj, languages)
-    print(create_table(languages_statistics_sj))
+    print(create_table(languages_statistics_sj, title))
 
 
 

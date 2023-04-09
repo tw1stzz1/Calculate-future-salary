@@ -6,7 +6,10 @@ from collections import defaultdict
 def get_vacancies(language="Python"):
     url = "https://api.hh.ru/vacancies"
     params = {
-        "text" : language
+        "text" : language,
+        "area" : 1,
+        "period" : 30
+        
     }
     response = requests.get(url, params=params)
     response.raise_for_status()

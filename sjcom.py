@@ -75,22 +75,3 @@ def get_languages_statistics_sj(api_key_sj, languages):
     for language in languages:
         amount_languages_vacancies[language] = get_vacancies_statistics(api_key_sj, language)
     return amount_languages_vacancies
-
-
-def main():
-    api_key_sj = os.environ['API_KEY_SJ']
-    languages = [
-        "Python",
-        "JavaScript", 
-        "Java", 
-        "C++", 
-        "C#", 
-        "C", 
-        "PHP", 
-        "Ruby"
-    ]
-    pprint(get_languages_statistics(api_key_sj, languages))
-    
-
-if __name__ == "__main__":
-    main()
