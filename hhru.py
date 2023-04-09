@@ -7,7 +7,7 @@ def get_vacancies(language="Python",
                   page=0,
                   professional_role=96,
                   city_id="1",
-                  period=30)
+                  period=30):
                   
     url = "https://api.hh.ru/vacancies"
     params = {
