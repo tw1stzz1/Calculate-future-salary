@@ -3,11 +3,13 @@ from itertools import count
 from collections import defaultdict
 
 
-def get_vacancies(language="Python"):
+def get_vacancies(page, language="Python"):
     url = "https://api.hh.ru/vacancies"
     params = {
+        "page" : page,
+        "professional_role" : 96,
         "text" : language,
-        "area" : 1,
+        "area" : "1",
         "period" : 30
         
     }
@@ -19,7 +21,7 @@ def get_vacancies(language="Python"):
 def get_vacancies_statistics(language="Python"):
     averages_salaries = []
     for page in count(0):
-        vacancies = get_vacancies(language)
+        vacancies = get_vacancies(page, language)
         if page >= vacancies["pages"]-1:
             break
         for vacancy in vacancies["items"]:
