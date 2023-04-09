@@ -46,7 +46,7 @@ def main():
     ]
     title = "HeadHunter"
     languages_statistics_hhru = get_languages_statistics_hhru(languages)
-    print(create_table(languages_statistics_hhru))
+    print(create_table(languages_statistics_hhru, title))
     title = "SuperJob"
     languages_statistics_sj = get_languages_statistics_sj(api_key_sj, languages)
     print(create_table(languages_statistics_sj, title))
