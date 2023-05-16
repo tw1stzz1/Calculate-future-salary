@@ -1,9 +1,11 @@
 import os
-import requests
 from pprint import pprint
 from itertools import count
 from collections import defaultdict
 
+import requests
+
+from calculate_average_salary import calculate_average_salary
 
 def get_vacancies(api_key_sj, 
                   language="Python", 
@@ -27,23 +29,10 @@ def get_vacancies(api_key_sj,
     return response.json()
 
 
-def calculate_average_salary(vacancy_salary_from=None, vacancy_salary_to=None):
-    if vacancy_salary_to and vacancy_salary_from:
-        average_salary = (int(vacancy_salary_from) + int(vacancy_salary_to))/2
-    elif not vacancy_salary_from:
-        average_salary = int(vacancy_salary_to) * 0.8
-    elif not vacancy_salary_to:
-        average_salary = int(vacancy_salary_from) * 1.2
-    else:
-        average_salary = None
-    return average_salary
-
-
 def get_vacancies_statistics(api_key_sj, language="Python"):
     averages_salaries = []
     for page in count(0, 1):
         vacancies = get_vacancies(api_key_sj, language, page)
-        
         for vacancy in vacancies['objects']:
             if not (vacancy["payment_to"] or vacancy["payment_from"]):
                 continue

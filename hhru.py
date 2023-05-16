@@ -1,6 +1,9 @@
-import requests
 from itertools import count
 from collections import defaultdict
+
+import requests
+
+from calculate_average_salary import calculate_average_salary
 
 
 def get_vacancies(language="Python",
@@ -16,7 +19,6 @@ def get_vacancies(language="Python",
         "text" : language,
         "area" : city_id,
         "period" : period
-        
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -26,7 +28,7 @@ def get_vacancies(language="Python",
 def get_vacancies_statistics(language="Python"):
     averages_salaries = []
     for page in count(0):
-        vacancies = get_vacancies(page, language)
+        vacancies = get_vacancies(language, page)
         if page >= vacancies["pages"]-1:
             break
         for vacancy in vacancies["items"]:
@@ -34,21 +36,21 @@ def get_vacancies_statistics(language="Python"):
                 continue
             if not vacancy["salary"]["currency"] == "RUR":
                 continue
-         
+
             averages_salaries.append(
                 calculate_average_salary(
                     vacancy["salary"]["from"],
                     vacancy["salary"]["to"]
                 )
             )
-        
+
     if averages_salaries:
         average_salary = int(
             sum(averages_salaries) / len(averages_salaries)
         )
     else:
         average_salary = None
-    
+
     vacancies_amount = vacancies["found"]
 
     vacancies_statistics = {
