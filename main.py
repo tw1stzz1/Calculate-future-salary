@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 from hhru import get_languages_statistics_hhru
 from sjcom import get_languages_statistics_sj
-from calculate_average_salary import calculate_average_salary
+
 
 def create_table(languages_statistics, title):   
     title_table = [
